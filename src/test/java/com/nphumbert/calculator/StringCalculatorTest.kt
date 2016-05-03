@@ -24,4 +24,10 @@ class StringCalculatorTest {
     fun should_compute_sum_for_any_amount_of_numbers_separated_by_a_comma(numbers: List<@InRange(minInt = 0, maxInt = 10000) Int>) {
         assertThat(add(numbers.joinToString(","))).isEqualTo(numbers.sum())
     }
+
+    @Property(shrink = false)
+    fun should_compute_sum_for_any_amount_of_numbers_separated_by_any_separator(numbers: List<@InRange(minInt = 0, maxInt = 10000) Int>, separator: Char) {
+        assertThat(add(numbers.joinToString(separator.toString()), separator)).isEqualTo(numbers.sum())
+    }
+
 }
