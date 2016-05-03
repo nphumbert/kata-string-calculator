@@ -19,4 +19,9 @@ class StringCalculatorTest {
     fun should_compute_sum_for_one_number(@InRange(minInt = 0) number: Int) {
         assertThat(add(number.toString())).isEqualTo(number)
     }
+
+    @Property(shrink = false)
+    fun should_compute_sum_for_two_numbers_separated_by_a_comma(@InRange(minInt = 0, maxInt = 10000) firstNumber: Int, @InRange(minInt = 0, maxInt = 10000) secondNumber: Int) {
+        assertThat(add(firstNumber.toString() + "," + secondNumber.toString())).isEqualTo(firstNumber.plus(secondNumber))
+    }
 }
